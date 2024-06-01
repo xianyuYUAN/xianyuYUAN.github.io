@@ -298,6 +298,8 @@
                     
                     requiredMeta: ['nick'],
                     
+                    dark: auto,
+                    
                 });
             </script>
         </div>
@@ -305,6 +307,15 @@
         
     
 
+    <div id="waline"></div>
+  <script type="module">
+    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+    init({
+      el: '#waline',
+      serverURL: 'https://justcomment-sever-7f2ih2p8p-xianyuyuans-projects.vercel.app/',
+    });
+  </script>
 
     <!-- <div id="Waline">你好</div>
   <script>
