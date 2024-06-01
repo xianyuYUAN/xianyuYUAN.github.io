@@ -50,6 +50,7 @@ footer .footer-extra-description {
     display: block;
     margin-top: 12px;
     margin-bottom: -12px;
+    text-align: center;
 }
 
 footer .color-scheme-toggle {
