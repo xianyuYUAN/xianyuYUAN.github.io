@@ -259,7 +259,17 @@
 
 
     <div class="container post-prev-next">
-        <a class="next"></a>
+        
+        <a href="/2024/06/01/6-1%E5%B0%8F%E8%AE%B0%F0%9F%93%95/" class="next">
+            <div>
+                <div class="text">
+                    <p class="label">Next</p>
+                    <h3 class="title">6.1小记📕</h3>
+                </div>
+            </div>
+        </a>
+        
+        
         
         <a href="/2024/05/31/5-30%E5%B0%8F%E8%AE%B0%F0%9F%93%95/" class="prev">
             <div>
@@ -284,7 +294,7 @@
         });
     </script>
 
-    
+     
         
         <div class="container">
             <div id="waline"></div>
@@ -292,11 +302,7 @@
                 new Waline({
                     el: "#waline",
                     
-                    path: location.pathname,
-                    
-                    serverURL: 'https://justcomment-sever-7f2ih2p8p-xianyuyuans-projects.vercel.app/',
-                    
-                    requiredMeta: ['nick'],
+                    serverURL: 'https://justcomment-sever-7f2ih2p8p-xianyuyuans-projects.vercel.app',
                     
                     dark: auto,
                     
@@ -305,22 +311,22 @@
         </div>
         
         
-    
+     
 
     <div id="waline"></div>
   <script type="module">
-    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+    import { init } from 'http://unpkg.com/@waline/client@v3/dist/waline.js';
 
     init({
       el: '#waline',
-      serverURL: 'https://justcomment-sever-7f2ih2p8p-xianyuyuans-projects.vercel.app/',
+      serverURL: 'http://justcomment-sever-7f2ih2p8p-xianyuyuans-projects.vercel.app',
     });
   </script>
 
     <!-- <div id="Waline">你好</div>
   <script>
     waline({
-      serverURL: 'https://justcomment-sever-7f2ih2p8p-xianyuyuans-projects.vercel.app/',  
+      serverURL: 'https://justcomment-sever-7f2ih2p8p-xianyuyuans-projects.vercel.app',  
     });
   </script> -->
 
