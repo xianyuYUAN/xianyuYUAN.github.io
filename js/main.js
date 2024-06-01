@@ -26,7 +26,7 @@
             }
         }
     })
-    
+
     // a simple solution for managing cookies
     const Cookies = new class {
         get(key, fallback) {
