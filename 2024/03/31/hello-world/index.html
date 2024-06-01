@@ -160,6 +160,47 @@
         
     </div>
 
+
+    <div id = "frozen-btn" class = "center">
+       
+        <button class="purple" onclick = "Change()">Drink☕️</button>
+        </div>
+        
+        <div class = "hide" id = "img">
+            <div class="post-list">
+                <article class="post-list-item">
+                    <div class="content">
+                        <img src="https://t.tutu.to/img/Eo25" alt="微信">
+                        <div class="center">
+                            Thank U 🐟
+                        </div>
+                    </div>
+                </article>
+                <!-- <article class="post-list-item">
+                    <div class="content">
+                        <img src="" alt="支付宝">
+                        <div class="center">
+                            🍪
+                        </div>
+                    </div>
+                </article> -->
+            </div>
+        </div>
+        <script>
+                function Change()
+                {
+                    var img = document.getElementById("img");
+                    if(img.className == "hide")
+                    {
+                        img.className="";
+                    }
+                    else
+                    {
+                        img.className="hide";
+                    }
+                }
+        </script>
+
     
     <div class="about">
         <h1>About this Post</h1>
@@ -176,6 +217,10 @@
     </div>
     
 
+
+   
+
+
     <div class="container post-prev-next">
         
         <a href="/2024/05/31/5-30%E5%B0%8F%E8%AE%B0%F0%9F%93%95/" class="next">
@@ -187,8 +232,21 @@
             </div>
         </a>
         
+        
         <a class="prev"></a>
     </div>
+
+    <script>
+        // 选择所有具有 "build" 类的元素
+        const buildButtons = document.querySelectorAll('.build');
+    
+        // 为每个按钮添加点击事件监听器
+        buildButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                alert('🚧Blog building......');
+            });
+        });
+    </script>
 
     
         
@@ -203,21 +261,21 @@
             <div class="group">
                 <h2 class="title">更多传送门🚪</h2>
                 
-                <a href="/" class="item">Home🏠</a>
+                <a href="/" class="item">🏠Home</a>
                 
-                <a href="/archives" class="item">Time Line📅</a>
+                <a href="/archives" class="item">📅Time Line</a>
                 
-                <a href="/tags" class="item">Tags🏷️</a>
+                <a href="/tags" class="item">🏷️Tags</a>
                 
-                <a href="/categories" class="item">Categories📒</a>
+                <a href="/categories" class="item">📒Categories</a>
                 
-                <a href="/friends" class="item">Friends🐧</a>
+                <a href="/friends" class="item">🐧Friends</a>
                 
-                <a href="/CTF" class="item">CTF🥇</a>
+                <a href="/CTF" class="item">🥇CTF</a>
                 
-                <a href="/projects" class="item">Projects⌨️</a>
+                <a href="/projects" class="item">⌨️Projects</a>
                 
-                <a href="/about" class="item">About🐠</a>
+                <a href="/about" class="item">🐠About</a>
                 
                 
             </div>
