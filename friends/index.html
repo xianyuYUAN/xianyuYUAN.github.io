@@ -76,6 +76,12 @@
   
 
   
+    <script src='https://unpkg.com/@waline/client@v2/dist/waline.js'></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+    />
+  
 <meta name="generator" content="Hexo 7.1.1"></head>
     <body
         data-color-scheme="auto"
@@ -519,8 +525,33 @@
 
     
         
+        <div class="container">
+            <div id="waline"></div>
+            <script>
+                new Waline({
+                    el: "#waline",
+                    
+                    path: location.pathname,
+                    
+                    serverURL: 'https://justcomment-sever-7f2ih2p8p-xianyuyuans-projects.vercel.app/',
+                    
+                    requiredMeta: ['nick'],
+                    
+                });
+            </script>
+        </div>
+        
         
     
+
+
+    <!-- <div id="Waline">你好</div>
+  <script>
+    waline({
+      serverURL: 'https://justcomment-sever-7f2ih2p8p-xianyuyuans-projects.vercel.app/',  
+    });
+  </script> -->
+
 </article>
 
         <footer>
