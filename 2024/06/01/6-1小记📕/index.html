@@ -80,12 +80,6 @@
   
 
   
-    <script src='https://unpkg.com/@waline/client@v2/dist/waline.js'></script>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
-    />
-  
   <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
 <meta name="generator" content="Hexo 7.1.1"></head>
     <body
@@ -160,7 +154,9 @@
             <span>1,</span>
             <span>2024</span><br><span> <span id="busuanzi_container_page_pv">
                 Views : <span id="busuanzi_value_page_pv"></span> 👀
-              </span></span>
+              </span>
+ 
+            </span>
         </div>
         
 
@@ -171,6 +167,7 @@
 
     <div class="content">
         <p>不知不觉周六就这么过去了，白天起的很晚，到中午才到团队。<br>不知道吃啥就会去美团买包塔斯汀，带到团队来吃。中午吃饭闲来无事去扒了扒战队队长P.Z师傅的博客，（因为我最一开始就是看中了PZ师傅的模板，才决定搭建这样一个博客），看到了大佬的学习历程以及一些对生活的记录，通过友链还扒到了 云之君师傅的博客（竟然也是卡布奇诺这个主题，看来大家用的不少），这位re师傅也确实很有意思，看到了许多前辈的博客，感觉后面会更努力朝着他们去学习。（云之君的博客好下饭🍚）</p>
+<p><img src="https://s1.locimg.com/2024/06/02/7c804992ccce7.png"></p>
 <p>其实昨天已经把我的这个博客搭建的差不多了，按照计划是应该继续去把安卓项目搞完，然后开始学一点pwn。</p>
 <p>但是还是想捣鼓一下博客，于是就去网上漫无目的去找“hexo博客插件”之类的文章。找了一会感觉没啥劲头去搭博客，就看了看这周末有什么比赛要打，结果只有NSS上一个新生赛LitCTF</p>
 <p>群里阿尔法师傅说二十分钟AK了 我觉得应该也不是很难，自己最后做了一个小时，一个因为做python反编译这道题的时候，我的python版本不对，关键库没编译出来；另一个在做RC4的时候没想到新生赛弄了一些密钥反调试变换。</p>
@@ -181,13 +178,22 @@
 <p>4 做个文本阅读时长的插件。</p>
 <p>其实网上的文章挺多的，但是都是随大流的next或者butterfly主题，关于我这个卡布奇诺的教学真是少之又少，昨天计划写的教学文章，因为今天优化博客的事耽搁了，这样就能出两个文章了《手把手教你Hexo卡布奇诺主题搭建》一个基础款，一个插件进阶版。</p>
 <p>四点多到六点多，把浏览量这个搞好了，比昨天更清楚这个html的写法了，自己也歪打正着会用一点js语法了。（过程还是有点波折）</p>
+<p><img src="https://s1.locimg.com/2024/06/02/3f68ce2d1b474.png"></p>
+<p><img src="https://s1.locimg.com/2024/06/02/9c7bb9a693591.png"></p>
 <p>紧接着没吃饭继续去试那个打赏怎么做，一直扒PZ师傅的前端，然后研究css文件改了哪些地方，html这边怎么修改，终于是完成了这部分的<del>搭建</del>（抄作业），中途还p了个收款码的图片。</p>
+<p><img src="https://s1.locimg.com/2024/06/02/9ace247ba25db.png"></p>
 <p>搞完这个就开始研究评论区了，发现原作者提供了waline的评论系统，只是自己之前研究不深没有用起来罢了。</p>
-<p>然后回来宿舍接着学怎么注册这个评论系统，忙活到一点多，终于在前端实现了评论区，但是一去使用，发现在我的博客里根本评论不了。</p>
+<p><img src="https://s1.locimg.com/2024/06/02/63c1a59f81cd7.png"></p>
+<p><img src="https://s1.locimg.com/2024/06/02/306abfde22f18.png"></p>
+<p>然后回来宿舍接着学怎么注册这个评论系统，忙活到一点多，终于在前端实现了评论区，但是一去使用，发现在我的博客里根本评论不了。（上图就是失败了）</p>
 <hr>
 <p>评论区前端呈现的时候觉得今天也像前天一样完美收官，但是这个博客优化的任务还是留有好多问题，</p>
 <p>前端的评论区还没实现颜色黑白主题的自动变换；晚上搭建的服务系统貌似因为国外版的原因？国内用户访问不了，只能登入不能评论；计划的那个文字阅读时长插件还没做好。明天把这三件事完成，我的博客才算是彻底完成了。</p>
 <p>你可能注意到今天这篇日记一个图片也没，就是因为更严重的问题，我用的图床生成网站崩了，导致我的博客至少在今天，图片都上传不了。还有可能因为用了别的图床链接的原因，我的打赏二维码加载巨慢，明天打算把图片存到本地，不用图床了。希望明天图床网站修好。</p>
+<blockquote>
+<p>【这是第二天插入的话】又找了一个图床网站，正在贴图片了orz</p>
+</blockquote>
+<p><img src="https://s1.locimg.com/2024/06/02/f7f74faac6102.png"></p>
 <p>今天还是六一儿童节，其实我本人来讲，不知为何上了大学对这些节日活动变得没那么感冒了，身边很多朋友都在互相过这个节日，网上的声音也不小。可能因为这两天在忙于搭博客吧，每天就这样平平凡凡的过，东西就这样慢慢的学。</p>
 <p>晚上跟机长回寝室的时候，感慨了一下一下子就六月了，这学期过的好快，可能因为太忙了吧，每周都有好多事情要做，忙忙碌碌就过完了一周，突如其然就过完了一个学期。最后一个月也就是期末月了，马上就迎来我的大二生活了。</p>
 <p>下周五就高考了，其实没想写这些的，一个是晚上刷到了’不会wink‘的高考祝福视频，一个是高中的好哥们在群里说想那个二战的朋友了。其实上了大学并没有想象的如此轻松，但是在大学这快一年的时间，接触了很多事，认识了很多人，感觉自己也确实成长了不少。 祝各位考生，高考顺利吧。</p>
@@ -211,20 +217,13 @@
                         </div>
                     </div>
                 </article>
-                <!-- <article class="post-list-item">
-                    <div class="content">
-                        <img src="" alt="支付宝">
-                        <div class="center">
-                            🍪
-                        </div>
-                    </div>
-                </article> -->
             </div>
         </div>
         <script>
                 function Change()
                 {
                     var img = document.getElementById("img");
+                    //img.classList.toggle("hide");
                     if(img.className == "hide")
                     {
                         img.className="";
@@ -283,20 +282,6 @@
     </script>
 
     
-        
-        <div class="container">
-            <div id="waline"></div>
-            <script>
-                // new Waline({
-                //     el: "#waline",
-                //     
-                //     serverURL: 'https://justcomment-sever-7f2ih2p8p-xianyuyuans-projects.vercel.app',
-                //     
-                //     dark: auto,
-                //     
-                // });
-            </script>
-        </div>
         
         
     

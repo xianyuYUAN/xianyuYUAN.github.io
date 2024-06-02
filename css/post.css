@@ -355,7 +355,7 @@ body[data-color-scheme="dark"] .tags .icon {
 }
 
 .hide{
-  display: none;
+  display: none !important;
 }
 
 button {
@@ -408,4 +408,12 @@ button:before{
 }
 
 
+/* 确保图片在不同设备上的响应性，并限制最大宽度 */
+.responsive-img {
+  max-width: 100%; /* 将最大宽度设置为50%，你可以根据需要调整此值 */
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: auto; /* 确保图片在父容器中居中 */
+}
 
