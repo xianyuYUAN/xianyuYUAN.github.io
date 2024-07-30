@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>Unity出题-代码编写篇 - xianyuuuan</title>
+  
+    <link rel="shortcut icon" href="/title/fish.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="Unity出题-代码编写篇 - xianyuuuan" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2024/07/30/Unity%E5%87%BA%E9%A2%98-%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E7%AF%87/index.html" />
+  
+  <meta property="og:image" content="/favicon.png" />
+  
+  <meta property="og:article:published_time" content="2024-07-30T09:46:01.000Z" />
+  
+  <meta property="og:article:author" content="xianyuuuan" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
+<meta name="generator" content="Hexo 7.1.1"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="2"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">xianyuuuan&#39;s Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/diary">Diary📓</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends🐧</a>
+            
+            
+            
+            <a class="nav-item" href="/CTF">CTF🥇</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Some Projects⌨️</a>
+            
+            
+            
+            <a class="nav-item" href="/categories">Categories📒</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About🐠</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/xianyuYUAN" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+
+<article class="post">
+    <div class="meta">
+        
+
+        
+        <div class="date" id="date">
+            <span>July</span>
+            <span>30,</span>
+            <span>2024</span><br><span> <span id="busuanzi_container_page_pv">
+                Views : <span id="busuanzi_value_page_pv"></span> 👀
+              </span>
+ 
+            </span>
+        </div>
+        
+
+        <h1 class="title">Unity出题-代码编写篇</h1>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上一篇介绍了一下素材的设计工作，这里我们来实现逻辑</p>
+<h1 id="正篇"><a href="#正篇" class="headerlink" title="正篇"></a>正篇</h1><p>下面我们会部分介绍一下关键的功能代码</p>
+<p>void start ()方法叫做生命周期函数，</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设计相应的变量</span></span><br><span class="line">    <span class="comment">//动画组件</span></span><br><span class="line">    <span class="keyword">private</span> Animator animator;</span><br><span class="line">    <span class="comment">//是否在地面上</span></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">bool</span> isOnGround = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//获取animator组件</span></span><br><span class="line">        animator = GetComponent&lt;Animator&gt;();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>脚本部分展示</p>
+<h4 id="玩家行走"><a href="#玩家行走" class="headerlink" title="玩家行走"></a>玩家行走</h4><p>updata就是更新的意思，方法的实现就是每帧更新方法内的内容。这里展示一下updata函数里怎么样</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//获取玩家的左右键按键 -1，0，1 (a和d)</span></span><br><span class="line">    <span class="built_in">float</span> h = Input.GetAxis(<span class="string">&quot;Horizontal&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (h != <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//移动.方向 * 上一帧花费的时间*玩家按键</span></span><br><span class="line">            transform.Translate(transform.right*Time.deltaTime*h);</span><br><span class="line">            <span class="comment">//这里实现的是人物的方向，为了让人物行走更加真实，方向判断根据上面的h</span></span><br><span class="line">            <span class="keyword">if</span> (h&lt;<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                GetComponent&lt;SpriteRenderer&gt;().flipX = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(h&gt;<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                GetComponent&lt;SpriteRenderer&gt;().flipX = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            animator.SetBool(<span class="string">&quot;run&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            animator.SetBool(<span class="string">&quot;run&quot;</span>,<span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(isOnGround &amp;&amp; Input.GetKeyDown(KeyCode.W))</span><br><span class="line">        &#123;</span><br><span class="line">            GetComponent&lt;Rigidbody2D&gt;().AddForce(Vector2.up*<span class="number">180</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里的transform就是我们unity界面的这个窗口，直接通过上面的语法就可以实现人物的移动</p>
+<p><img src="https://s2.loli.net/2024/07/30/J1IjeKU4rh5OC8W.png" alt="img"></p>
+<p><code>animator.SetBool(&quot;run&quot;,true);</code>语句就是联动我们上一篇讲到的参数 条件的设置，</p>
+<p>这里的run就是我们设计play动画run的时候设置的bool参数，这里只要有位移的键盘输入，h的值就会非0，设置相关的动画。</p>
+<p>设置跳跃动作，先使用GetComponent<Rigidbody2D>获取对应的刚体，然后施加一个向上的力，就实现了跳跃动作，这里最关键的就是isOnGround变量的值 是决定是否跳跃的条件，怎么改变这个值会在下面讲到</p>
+<h4 id="触碰互动（跳跃，死亡）"><a href="#触碰互动（跳跃，死亡）" class="headerlink" title="触碰互动（跳跃，死亡）"></a>触碰互动（跳跃，死亡）</h4><p>在unity中有一些特殊情况下调用的方法，如OnCollisionEnter2D，OnCollisionExit2D，OnTriggerEnter2D，下面这个就是当碰撞时就调用此方法，在这里我们就可以设计碰到敌人死亡和碰掉地面才跳跃的条件</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//碰撞则进入调用的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnCollisionEnter2D</span>(<span class="params">Collision2D collision</span>)</span> </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//如果碰到标签为Ground的地面</span></span><br><span class="line">        <span class="keyword">if</span>(collision.gameObject.tag == <span class="string">&quot;Ground&quot;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            animator.SetBool(<span class="string">&quot;jump&quot;</span>,<span class="literal">false</span>);</span><br><span class="line">            isOnGround = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(collision.gameObject.tag==<span class="string">&quot;Enemy&quot;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            animator.SetTrigger(<span class="string">&quot;die&quot;</span>);</span><br><span class="line">            GetComponent&lt;Rigidbody2D&gt;().AddForce(Vector2.up*<span class="number">150</span>);</span><br><span class="line">            Destroy(GetComponent&lt;CapsuleCollider2D&gt;());</span><br><span class="line">            Invoke(<span class="string">&quot;GameOver&quot;</span>,<span class="number">1f</span>);  <span class="comment">//延迟多少秒触发这个函数</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>还有OnCollisionExit2D，就是和上面相反的，离开碰撞时触发的条件，[那么这个方法便是控制能否无限空气跳的关键函数，只要修改此处便可破解。]</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnCollisionExit2D</span>(<span class="params">Collision2D collision</span>)</span> &#123;</span><br><span class="line">     <span class="keyword">if</span>(collision.gameObject.tag == <span class="string">&quot;Ground&quot;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        animator.SetBool(<span class="string">&quot;jump&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">        isOnGround = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="关卡逻辑"><a href="#关卡逻辑" class="headerlink" title="关卡逻辑"></a>关卡逻辑</h4><p>上面还提到了OnTriggerEnter2D函数，这个函数是只要碰到就触发，我们在这里实现player的进入下一关卡的逻辑</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnTriggerEnter2D</span>(<span class="params">Collider2D collision</span>)</span> &#123;</span><br><span class="line"></span><br><span class="line">       <span class="comment">//碰到flag进入下一关</span></span><br><span class="line">       <span class="keyword">if</span>(collision.gameObject.tag == <span class="string">&quot;flag&quot;</span>)</span><br><span class="line">       &#123;	<span class="comment">//记录我们设置当前的而关卡数 ，比如当前在第一关时，index的值是0</span></span><br><span class="line">           <span class="built_in">int</span> current_Level = SceneManager.GetActiveScene().buildIndex;</span><br><span class="line">               <span class="comment">//这里记录了关卡的总数，这里判断到最后一关之后，我们就返回第一关0</span></span><br><span class="line">           <span class="keyword">if</span> (current_Level == SceneManager.sceneCountInBuildSettings<span class="number">-1</span>)</span><br><span class="line">           &#123;</span><br><span class="line">               SceneManager.LoadScene(<span class="number">0</span>);</span><br><span class="line">           &#125;<span class="keyword">else</span></span><br><span class="line">           &#123;<span class="comment">//其他情况就让当前关卡加一</span></span><br><span class="line">               SceneManager.LoadScene(current_Level+<span class="number">1</span>);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里要注意的是 我们首先要设置物体tag为‘flag’其次，还要添加组件选中是触发器</p>
+<p><img src="https://s2.loli.net/2024/07/30/9mSb7sugK5kU8nZ.png" alt="img"></p>
+<h4 id="敌人死亡"><a href="#敌人死亡" class="headerlink" title="敌人死亡"></a>敌人死亡</h4><p>我们首先在最上面设置了敌人是否死亡的标志位，在这里会用到，每当条件触发时，即标签为player的刚体触发了我们相应的位置，那么变死亡，写这里的触发器和上面的flag设计相似我们在一个物体上设计了两个box collider，头部是玩家可以踩到的地方，那么设置为小一点的触发器，玩家一旦从侧面或者正面接触，都会死亡。</p>
+<p><img src="https://s2.loli.net/2024/07/30/nBRYQVesICwHL59.png" alt="img"></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnTriggerEnter2D</span>(<span class="params">Collider2D collision</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(collision.gameObject.tag == <span class="string">&quot;Player&quot;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//播放死亡动画</span></span><br><span class="line">            animator.SetTrigger(<span class="string">&quot;die&quot;</span>);</span><br><span class="line">            AudioManager.Instance.Play(<span class="number">2</span>);</span><br><span class="line">            <span class="comment">//制作死亡效果（压扁之类的）</span></span><br><span class="line">            <span class="comment">//transform.position = new Vector3(transform.position.x, transform.position.y,0);</span></span><br><span class="line">            <span class="comment">//改变死亡的flag </span></span><br><span class="line">            isDie = <span class="literal">true</span>;</span><br><span class="line">            <span class="comment">//创建一个列表</span></span><br><span class="line">            BoxCollider2D[] collider2Ds;</span><br><span class="line">            <span class="comment">//向列表中存储元素</span></span><br><span class="line">            collider2Ds = GetComponents&lt;BoxCollider2D&gt;();</span><br><span class="line">            <span class="comment">//for循环依次摧毁我们上面的俩boxcollider</span></span><br><span class="line">            <span class="keyword">foreach</span> (<span class="keyword">var</span> item <span class="keyword">in</span> collider2Ds)</span><br><span class="line">            &#123;</span><br><span class="line">                Destroy(item);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//把创建的这个物件也摧毁 这里实现的就是物体不会再触发任何的效果 以防尸体还在，我们却死亡了</span></span><br><span class="line">            Destroy(GetComponent&lt;Rigidbody2D&gt;());</span><br><span class="line">            <span class="comment">//把这个敌人画面摧毁</span></span><br><span class="line">            Destroy(gameObject,<span class="number">0.7f</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="摄像机跟踪"><a href="#摄像机跟踪" class="headerlink" title="摄像机跟踪"></a>摄像机跟踪</h4><p>在这里设置了min和max之后，就可以在unity可视化界面去修改对应的值，我们先把这个脚本组件给摄像机物体</p>
+<p><img src="https://s2.loli.net/2024/07/30/I4hd1LkoHA8Xswe.png" alt="img"></p>
+<p>记得选中我们要跟踪的对象</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Transform Player;</span><br><span class="line">   <span class="keyword">public</span> <span class="built_in">float</span> MaxX;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="built_in">float</span> MinX;</span><br><span class="line">   <span class="comment">// Start is called before the first frame update</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="comment">// Update is called once per frame</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">Update</span>()</span></span><br><span class="line">   &#123;</span><br><span class="line">       Vector3 newPos = <span class="keyword">new</span> Vector3(Player.position.x, transform.position.y, transform.position.z);</span><br><span class="line">       newPos.x = Mathf.Clamp(newPos.x,MinX,MaxX);</span><br><span class="line"></span><br><span class="line">       transform.position = newPos;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="音效加载"><a href="#音效加载" class="headerlink" title="音效加载"></a>音效加载</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> AudioManager Instance;  <span class="comment">//设置单例</span></span><br><span class="line"><span class="keyword">private</span> AudioSource audioSource;</span><br><span class="line"><span class="keyword">public</span> AudioClip[] audioClips;</span><br><span class="line"><span class="comment">// Start is called before the first frame update</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Awake</span>()</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (Instance == <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        Instance = <span class="keyword">this</span>;</span><br><span class="line">        DontDestroyOnLoad(gameObject);</span><br><span class="line">        audioSource = GetComponent&lt;AudioSource&gt;();</span><br><span class="line">    &#125;<span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        Destroy(gameObject);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CheckBG</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(audioSource.isPlaying==<span class="literal">false</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        audioSource.Play();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Play</span>(<span class="params"><span class="built_in">int</span> index,<span class="built_in">bool</span> bgOver = <span class="literal">false</span></span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(bgOver)</span><br><span class="line">    &#123;</span><br><span class="line">        audioSource.Stop();</span><br><span class="line">    &#125;</span><br><span class="line">    audioSource.PlayOneShot(audioClips[index]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>将一系列的脚本加载之后，我们的人物就可以动起来了，我们的游戏就算是基本设置完成了。下一篇就是系列的最后一篇文章了，重点会讲到从逆向出题角度，去了解unity系列的题目。</p>
+
+    </div>
+
+
+    <div id = "frozen-btn" class = "center">
+       
+        <button class="purple" onclick = "Change()">Drink☕️</button>
+        </div>
+        
+        <div class = "hide" id = "img">
+            <div class="post-list">
+                <article class="post-list-item">
+                    <div class="content">
+                        <img src="https://s2.loli.net/2024/07/04/1NBje8xzQPvRaGp.png" alt="微信">
+                        <div class="center">
+                            Thank U 🐟
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <script>
+                function Change()
+                {
+                    var img = document.getElementById("img");
+                    //img.classList.toggle("hide");
+                    if(img.className == "hide")
+                    {
+                        img.className="";
+                    }
+                    else
+                    {
+                        img.className="hide";
+                    }
+                }
+        </script>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by xianyuuuan, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+    </div>
+    
+
+
+   
+
+
+    <div class="container post-prev-next">
+        <a class="next"></a>
+        
+        <a href="/2024/07/28/Unity%E5%87%BA%E9%A2%98-%E7%B4%A0%E6%9D%90%E8%AE%BE%E8%AE%A1%E7%AF%87/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">Unity出题-素材设计篇</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    <script>
+        // 选择所有具有 "build" 类的元素
+        const buildButtons = document.querySelectorAll('.build');
+    
+        // 为每个按钮添加点击事件监听器
+        buildButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                alert('🚧Blog building......');
+            });
+        });
+    </script>
+
+    
+        
+        
+    
+
+    <div class="container">
+    <div id="tcomment"></div>
+    <script src="https://cdn.staticfile.org/twikoo/1.6.16/twikoo.all.min.js"></script>
+    <script>
+    twikoo.init({
+      envId: 'https://xianyuuuan-twikoo.hf.space/', // 腾讯云环境填 envId；Vercel 环境填地址（https://xxx.vercel.app）
+      el: '#tcomment', // 容器元素
+      // region: 'ap-guangzhou', // 环境地域，默认为 ap-shanghai，腾讯云环境填 ap-shanghai 或 ap-guangzhou；Vercel 环境不填
+      // path: location.pathname, // 用于区分不同文章的自定义 js 路径，如果您的文章路径不是 location.pathname，需传此参数
+      // lang: 'zh-CN', // 用于手动设定评论区语言，支持的语言列表 https://github.com/imaegoo/twikoo/blob/main/src/client/utils/i18n/index.js
+    })
+    </script>
+    </div>
+    
+
+<!-- <div class="container">
+    <div id="waline"></div>
+  <script type="module">
+    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+    init({
+      el: '#waline',
+      serverURL: 'https://justcomment-sever-9uq31o53w-xianyuyuans-projects.vercel.app',
+    });
+  </script>
+ </div> -->
+    <!-- <div id="Waline">你好</div>
+  <script>
+    waline({
+      serverURL: 'https://justcomment-sever-7f2ih2p8p-xianyuyuans-projects.vercel.app',  
+    });
+  </script> -->
+
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h2 class="title">更多传送门🚪</h2>
+                
+                <a href="/" class="item">🏠Home</a>
+                
+                <a href="/archives" class="item">📅Time Line</a>
+                
+                <a href="/tags" class="item">🏷️Tags</a>
+                
+                <a href="/categories" class="item">📒Categories</a>
+                
+                <a href="/friends" class="item">🐧Friends</a>
+                
+                <a href="/CTF" class="item">🥇CTF</a>
+                
+                <a href="/projects" class="item">⌨️Projects</a>
+                
+                <a href="/about" class="item">🐠About</a>
+                
+                <a href="/gallery" class="item">画廊</a>
+                
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">我在这👇</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/xianyuYUAN" class="item">GitHub</a>
+                
+                <a target="_blank" rel="noopener" href="https://space.bilibili.com/325873377?spm_id_from=333.1007.0.0" class="item">Bilibili</a>
+                
+                <a target="_blank" rel="noopener" href="https://www.yuque.com/xianyuyuan" class="item">语雀🐦</a>
+                
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2024 xianyuuuan<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        <br>
+        <span class="footer-extra-description">   
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv"> View👀 : <span id="busuanzi_value_site_pv"></span></span> 
+            <span id="busuanzi_container_site_uv">&nbsp&nbspVistor👥 : <span id="busuanzi_value_site_uv"></span></span>&nbsp&nbsp
+            🫧🐟小站数据</span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>
