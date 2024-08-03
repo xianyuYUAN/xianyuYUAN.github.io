@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>Unity出题-逆向思路篇 - xianyuuuan</title>
+  
+    <link rel="shortcut icon" href="/title/fish.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="Unity出题-逆向思路篇 - xianyuuuan" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="http://example.com/2024/07/30/Unity%E5%87%BA%E9%A2%98-%E9%80%86%E5%90%91%E6%80%9D%E8%B7%AF%E7%AF%87/index.html" />
+  
+  <meta property="og:image" content="/favicon.png" />
+  
+  <meta property="og:article:published_time" content="2024-07-30T11:37:30.000Z" />
+  
+  <meta property="og:article:author" content="xianyuuuan" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
+<meta name="generator" content="Hexo 7.1.1"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="2"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">xianyuuuan&#39;s Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/diary">Diary📓</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends🐧</a>
+            
+            
+            
+            <a class="nav-item" href="/CTF">CTF🥇</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Some Projects⌨️</a>
+            
+            
+            
+            <a class="nav-item" href="/categories">Categories📒</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About🐠</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/xianyuYUAN" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+
+<article class="post">
+    <div class="meta">
+        
+
+        
+        <div class="date" id="date">
+            <span>July</span>
+            <span>30,</span>
+            <span>2024</span><br><span> <span id="busuanzi_container_page_pv">
+                Views : <span id="busuanzi_value_page_pv"></span> 👀
+              </span>
+ 
+            </span>
+        </div>
+        
+
+        <h1 class="title">Unity出题-逆向思路篇</h1>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <blockquote>
+<p> 本篇文章已上传至bilibili【第玖期 REVERSE 分享会】直播录屏，空降50分钟可以观看讲解视频，题目讲解过程就不放在博客文章中了</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1U7igeZE5u/?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV1U7igeZE5u/?spm_id_from=333.999.0.0</a></p>
+</blockquote>
+<h1 id="前言——unity相关基础"><a href="#前言——unity相关基础" class="headerlink" title="前言——unity相关基础"></a>前言——unity相关基础</h1><h2 id="unity引擎与游戏文件"><a href="#unity引擎与游戏文件" class="headerlink" title="unity引擎与游戏文件"></a>unity引擎与游戏文件</h2><p>unity是一款游戏引擎，可以开发多平台，多系统下的2D 3D游戏，游戏平台上的一些小游戏，或者像我们熟悉的手游王者荣耀，原神。。。都是基于unity开发的游戏。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40360107/1722429273814-bd701aaa-da2e-4a84-b940-1ac029f4f3fe.png" alt="img"></p>
+<p>我们去打开一个unity游戏的文件夹时，我们可能会遇到下面这两种形式的文件形式，.exe便是我们的游戏启动器，无论是左边还是右边，都有一个后缀为_Data的文件夹</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40360107/1722433631477-8c0b90dd-ad7e-4e77-9192-4c47c131b2a7.png" alt="img"></p>
+<p>继续跟进目录后 我们就会发现两者有点细微的差别，左边名为il2cpp，右边名为管理的managed文件，想要进一步了解unity内部的原理，了解这两种的区别，就要接着往下去认识这两种语言。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40360107/1722433822742-a813c4ad-6b55-4646-906e-1ab28d43ff21.png" alt="img"></p>
+<h2 id="C-和Mono"><a href="#C-和Mono" class="headerlink" title="C#和Mono"></a>C#和Mono</h2><p>C sharp以.net框架作为基础一种面向对象的语言。我们知道unity有强大的多平台部署能力，而支撑这一能力的关键，就是包含了c#编译器等其他工具的开源项目Mono</p>
+<p><strong>Mono:一个由 Xamarin公司主持的自由开放源代码项目，目标是创建一系列符合ECMA标准（Ecma- 334和Ecma-335）的.NET工具包括C#编译器和通用语言架构。与微软的.NET Framework（共通语言运行平台）不同Mono项目不仅可以运行于Windows系统上，还可以运行于 Linux，FreeBSD，Unix，OS X和Solaris，甚至一些游戏平台。Mono使得C#这门语言有了很好的跨平台能力。</strong></p>
+<p>上右文件夹中的MonoBleedingEdge文件夹便是包含运行Unity服务器所需的所有Mono运行时库和依赖项。</p>
+<p>在2014年，Unity3D官方博客上发布了“<a target="_blank" rel="noopener" href="https://unity.com/cn/archive/blog/technology/the-future-of-scripting-in-unity">The future of scripting in unity</a>”的文章，引入了比mono更为安全的il2cpp技术</p>
+<h2 id="IL语言"><a href="#IL语言" class="headerlink" title="IL语言"></a>IL语言</h2><p>上文的il，全称Intermediate Language （中间语言），如何更好地理解他呢，我们可以把它理解为.NET框架下的“汇编”（低阶的人类可读编程语言）。我们实际在dnspy中去看一看他的结构</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PinHead</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// Token: 0x06000014 RID: 20 RVA: 0x0000221E File Offset: 0x0000041E</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnTriggerEnter2D</span>(<span class="params">Collider2D collision</span>)</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (collision.tag != <span class="string">&quot;PinHead&quot;</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			GameObject.Find(<span class="string">&quot;GameManager&quot;</span>).GetComponent&lt;GameManager&gt;().GameOver();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40360107/1722429004181-1ffc8c05-ecaa-47f0-bcb7-83e4e561055b.png" alt="img"></p>
+<p>可以看出一段Csharp代码的对应IL中，出现了call，ldstr等类似与汇编语言中的命令，</p>
+<p>通过一张图片我们可以更加清楚的理解上文提到的C#，高级语言如C# vb unityscript等语言经过编译，会先转为IL，IL再通过后续的编译，转为机器码使计算机去执行相应的指令。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40360107/1722429588469-f59ac113-2088-43bf-acda-76e20d032c8c.png" alt="img"></p>
+<h1 id="正篇——逆向中的unity"><a href="#正篇——逆向中的unity" class="headerlink" title="正篇——逆向中的unity"></a>正篇——逆向中的unity</h1><h2 id="出题"><a href="#出题" class="headerlink" title="出题"></a>出题</h2><blockquote>
+<p>相关出题内容请移步下面的两篇博客</p>
+<p><a href="%5Bhttps://xianyuuuan.space/2024/07/28/Unity%E5%87%BA%E9%A2%98-%E7%B4%A0%E6%9D%90%E8%AE%BE%E8%AE%A1%E7%AF%87/%5D(https://xianyuuuan.space/2024/07/28/Unity%E5%87%BA%E9%A2%98-%E7%B4%A0%E6%9D%90%E8%AE%BE%E8%AE%A1%E7%AF%87/)">素材设计篇</a> <a target="_blank" rel="noopener" href="https://xianyuuuan.space/2024/07/30/Unity%E5%87%BA%E9%A2%98-%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E7%AF%87/">代码编写篇</a></p>
+</blockquote>
+<p>借着为学校招新赛出题的机会，尝试去自己开发一下unity游戏，经过自己的实际开发，我发现一款游戏产生就只有简单的三步，设计构思-素材设计-代码编写，在强大的unity引擎帮助下，很多类似物理效果，动画效果的实现都是有unity中自带的一些模块库就可以轻松实现（Boxcollider 2D就可以实现一个实体 Rigitbody 2D就能实现2的游戏的物理效果）</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40360107/1722158808230-d603af54-2046-462e-a9fe-306f45dccfa4.png" alt="img"></p>
+<p>而我们需要去做的就是编写出结合游戏设计思路的关键脚本（比如游戏玩法，规则，人物的移动，关卡的转换逻辑之类的）</p>
+<p>在这一部分主要想和大家分享一下在写c#脚本时的关键点，我们了解了正向的过程，能更好的去理解逆向的过程。我们在unity中新建一个C#脚本时，他会默认生成两个方法名Start和update</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40360107/1722439250315-619a9806-8610-42b8-8379-da0107a09a14.png" alt="img"></p>
+<p>start叫做生命周期函数，就是他会在启动脚本时第一个去执行他，我们比如在这里就是实现了，在每次执行玩家c#代码时，先定义一个animator变量，再去执行下面的update代码。</p>
+<p>update顾名思义就是更新，他是游戏画面逻辑更新的关键代码，很多玩家的行为，都写在这个方法之中，比如这里写到的就是一个简单的控制玩家行走跳跃的代码，以及按键的设置功能。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//获取animator组件</span></span><br><span class="line">        animator = GetComponent&lt;Animator&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//获取玩家的左右键按键 -1，0，1 (a和d)</span></span><br><span class="line">    <span class="built_in">float</span> h = Input.GetAxis(<span class="string">&quot;Horizontal&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (h != <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//移动.方向 * 上一帧花费的时间*玩家按键</span></span><br><span class="line">            transform.Translate(transform.right*Time.deltaTime*h);</span><br><span class="line">            <span class="comment">//这里实现的是人物的方向，为了让人物行走更加真实，方向判断根据上面的h</span></span><br><span class="line">            <span class="keyword">if</span> (h&lt;<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                GetComponent&lt;SpriteRenderer&gt;().flipX = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(h&gt;<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                GetComponent&lt;SpriteRenderer&gt;().flipX = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            animator.SetBool(<span class="string">&quot;run&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            animator.SetBool(<span class="string">&quot;run&quot;</span>,<span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(isOnGround &amp;&amp; Input.GetKeyDown(KeyCode.W))</span><br><span class="line">        &#123;</span><br><span class="line">            GetComponent&lt;Rigidbody2D&gt;().AddForce(Vector2.up*<span class="number">180</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么作为一名逆向的思路，我们在寻找函数时，如果遇到的类似的2d游戏，在想去查找一些关键的执行逻辑在哪些方法中实现，可以直接去寻找update方法名的关键词，从中去获取到一些信息。</p>
+<h2 id="做题经历"><a href="#做题经历" class="headerlink" title="做题经历"></a>做题经历</h2><p>在市面上普遍有两种unity逆向，他们分别使用不同的编译方式，解决的思路也不同。</p>
+<h3 id="Mono编译"><a href="#Mono编译" class="headerlink" title="Mono编译"></a>Mono编译</h3><p>这是原始的编译方式，也是最容易攻破，不太安全的一种编译方式，生成的游戏文件夹中，游戏的关键代码文件会直接生成在 _Data\Managed\Assembly-CSharp.dll的文件之中，出题人一般会想让我们通过破解游戏逻辑，或者在c#中进行解密来获取到最后的flag。</p>
+<h4 id="是男人就来扎针"><a href="#是男人就来扎针" class="headerlink" title="是男人就来扎针"></a>是男人就来扎针</h4><h4 id="牢大我想你了"><a href="#牢大我想你了" class="headerlink" title="牢大我想你了"></a>牢大我想你了</h4><h3 id="il2cpp编译"><a href="#il2cpp编译" class="headerlink" title="il2cpp编译"></a>il2cpp编译</h3><p>这串怎么去读呢？ IL二cpp吗？按照英文的读法，应该是 IL two（to）cpp，也就是从IL中间语言转换为cpp的过程，这一过程是如何实现的呢。</p>
+<p>在上文的基础中我们已经知道，unity的代码在执行时，会先将高级语言转换为相应的IL中间语言，中间语言再通过Mono VM编译为机器码。刚才提到了<a target="_blank" rel="noopener" href="https://unity.com/cn/archive/blog/technology/the-future-of-scripting-in-unity">The future of scripting in unity</a>，便是使用了IL2CPP技术将原先的过程变为了，在代码转换为IL之后，不会通过Mono编译，而是通过IL2cpp转变为c++代码，然后再使用本地的c++编译器编译为ASM汇编代码，通过IL2cpp VM转为机器码执行。</p>
+<p>图片可以很直观的看到改变的步骤</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40360107/1722502796207-0fc60c64-4213-4aa2-ad88-ca9c8abb6cd2.png" alt="img"></p>
+<p>AOT（Ahead Of Time）编译而非JIT（Just In Time）编译<a target="_blank" rel="noopener" href="https://gwb.tencent.com/community/detail/126815">https://gwb.tencent.com/community/detail/126815</a></p>
+<p>而通过出题我们也很明显的看到了这一过程，将编译选择为IL2cpp后，生成项目时编译会出现“编译为c”“编译为ASM”这样的提示</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40360107/1722503065944-2db015f3-7011-46b7-ba24-a3d5588a3f19.png" alt="img"><img src="https://cdn.nlark.com/yuque/0/2024/png/40360107/1722503126734-39d3207a-8a96-482e-a621-06de39bacf97.png" alt="img"></p>
+<p>我们的文件夹中也是提示不要伴随你的游戏文件的文件夹中，有il2cpp相应的输出文件，看到里面便是.cpp代码。也就是说，我们发布游戏的话，只用打包data中的文件，而不用把c#的dll直接像mono一样暴露在外面，所以说这种方式也就更为安全。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40360107/1722503284900-f396fee9-61e5-4685-8026-983e8de619f6.png" alt="img"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40360107/1722503547640-de8f6853-32a2-4baa-ba50-97b60cb0eaec.png" alt="img"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40360107/1722503540664-13716d50-0243-4a5a-90ef-93f5922659c8.png" alt="img"></p>
+<p>打开data文件夹中，我们发现只有少的可怜的global-metadata（元数据）但是这其中就包含着C#中的类名、方法名、属性名、字符串等地址信息，程序启动时会按需从中读取。可以说是il2cpp的关键逆向入口点。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40360107/1722503820396-91862e93-843f-4ebd-a990-4eb314d16ee0.png" alt="img"></p>
+<h4 id="XYCTF-babyunity"><a href="#XYCTF-babyunity" class="headerlink" title="XYCTF babyunity"></a>XYCTF babyunity</h4><p>Il2CppDumper</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Il2CppDumper.exe GameAssembly.dll global-metadata.dat output-out</span><br></pre></td></tr></table></figure>
+
+<p>将游戏文件中的<img src="https://cdn.nlark.com/yuque/0/2024/png/40360107/1722576097927-ed669cc0-1b23-40a8-ac7d-b455cbd5018e.png" alt="img"></p>
+<h1 id="结语——后期的项目"><a href="#结语——后期的项目" class="headerlink" title="结语——后期的项目"></a>结语——后期的项目</h1><p>这几次的unity经历更多还是从基础的原理或者简单的题目中去学习的，还没有真正去实战的角度去分析，在整理资料的时候发现了一位师傅<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-282712.htm">实战某手游的文章</a>，弄完下一个项目之后计划再去搞一下类似的项目。</p>
+<p>才疏学浅，希望今天的分享能够起到抛砖引玉的效果，所讲内容中有误的地方也希望师傅们可以批评指正，同时也希望能与更多感兴趣的师傅们一起继续讨论unity逆向相关的内容。</p>
+<p>本文参考</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://gwb.tencent.com/community/detail/126815">Unity之IL2CPP解析-腾讯游戏学堂</a></p>
+<p><a target="_blank" rel="noopener" href="https://mrwq.github.io/aggregate-paper/butian/%E6%B5%85%E8%B0%88CTF%E4%B8%AD%E7%9A%84unity%E6%B8%B8%E6%88%8F%E9%80%86%E5%90%91/">https://mrwq.github.io/aggregate-paper/butian/%E6%B5%85%E8%B0%88CTF%E4%B8%AD%E7%9A%84unity%E6%B8%B8%E6%88%8F%E9%80%86%E5%90%91/</a></p>
+<p>[<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-281560.htm">原创] XYCTF两道Unity IL2CPP题的出题思路与题解-CTF对抗-看雪-安全社区|安全招聘|kanxue.com</a></p>
+<p><a target="_blank" rel="noopener" href="https://lazzzaro.github.io/2020/12/13/reverse-Unity%E9%80%86%E5%90%91/index.html">Unity逆向</a></p>
+<p><a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-278275.htm#msg_header_h2_0">https://bbs.kanxue.com/thread-278275.htm#msg_header_h2_0</a></p>
+</blockquote>
+
+    </div>
+
+
+    <div id = "frozen-btn" class = "center">
+       
+        <button class="purple" onclick = "Change()">Drink☕️</button>
+        </div>
+        
+        <div class = "hide" id = "img">
+            <div class="post-list">
+                <article class="post-list-item">
+                    <div class="content">
+                        <img src="https://s2.loli.net/2024/07/04/1NBje8xzQPvRaGp.png" alt="微信">
+                        <div class="center">
+                            Thank U 🐟
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <script>
+                function Change()
+                {
+                    var img = document.getElementById("img");
+                    //img.classList.toggle("hide");
+                    if(img.className == "hide")
+                    {
+                        img.className="";
+                    }
+                    else
+                    {
+                        img.className="hide";
+                    }
+                }
+        </script>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by xianyuuuan, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+    </div>
+    
+
+
+   
+
+
+    <div class="container post-prev-next">
+        <a class="next"></a>
+        
+        <a href="/2024/07/30/Unity%E5%87%BA%E9%A2%98-%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E7%AF%87/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">Unity出题-代码编写篇</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    <script>
+        // 选择所有具有 "build" 类的元素
+        const buildButtons = document.querySelectorAll('.build');
+    
+        // 为每个按钮添加点击事件监听器
+        buildButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                alert('🚧Blog building......');
+            });
+        });
+    </script>
+
+    
+        
+        
+    
+
+    <div class="container">
+    <div id="tcomment"></div>
+    <script src="https://cdn.staticfile.org/twikoo/1.6.16/twikoo.all.min.js"></script>
+    <script>
+    twikoo.init({
+      envId: 'https://xianyuuuan-twikoo.hf.space/', // 腾讯云环境填 envId；Vercel 环境填地址（https://xxx.vercel.app）
+      el: '#tcomment', // 容器元素
+      // region: 'ap-guangzhou', // 环境地域，默认为 ap-shanghai，腾讯云环境填 ap-shanghai 或 ap-guangzhou；Vercel 环境不填
+      // path: location.pathname, // 用于区分不同文章的自定义 js 路径，如果您的文章路径不是 location.pathname，需传此参数
+      // lang: 'zh-CN', // 用于手动设定评论区语言，支持的语言列表 https://github.com/imaegoo/twikoo/blob/main/src/client/utils/i18n/index.js
+    })
+    </script>
+    </div>
+    
+
+<!-- <div class="container">
+    <div id="waline"></div>
+  <script type="module">
+    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+    init({
+      el: '#waline',
+      serverURL: 'https://justcomment-sever-9uq31o53w-xianyuyuans-projects.vercel.app',
+    });
+  </script>
+ </div> -->
+    <!-- <div id="Waline">你好</div>
+  <script>
+    waline({
+      serverURL: 'https://justcomment-sever-7f2ih2p8p-xianyuyuans-projects.vercel.app',  
+    });
+  </script> -->
+
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h2 class="title">更多传送门🚪</h2>
+                
+                <a href="/" class="item">🏠Home</a>
+                
+                <a href="/archives" class="item">📅Time Line</a>
+                
+                <a href="/tags" class="item">🏷️Tags</a>
+                
+                <a href="/categories" class="item">📒Categories</a>
+                
+                <a href="/friends" class="item">🐧Friends</a>
+                
+                <a href="/CTF" class="item">🥇CTF</a>
+                
+                <a href="/projects" class="item">⌨️Projects</a>
+                
+                <a href="/about" class="item">🐠About</a>
+                
+                <a href="/gallery" class="item">画廊</a>
+                
+                
+            </div>
+            
+            <div class="group">
+                <h2 class="title">我在这👇</h2>
+                
+                <a target="_blank" rel="noopener" href="https://github.com/xianyuYUAN" class="item">GitHub</a>
+                
+                <a target="_blank" rel="noopener" href="https://space.bilibili.com/325873377?spm_id_from=333.1007.0.0" class="item">Bilibili</a>
+                
+                <a target="_blank" rel="noopener" href="https://www.yuque.com/xianyuyuan" class="item">语雀🐦</a>
+                
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2024 xianyuuuan<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        <br>
+        <span class="footer-extra-description">   
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv"> View👀 : <span id="busuanzi_value_site_pv"></span></span> 
+            <span id="busuanzi_container_site_uv">&nbsp&nbspVistor👥 : <span id="busuanzi_value_site_uv"></span></span>&nbsp&nbsp
+            🫧🐟小站数据</span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>
